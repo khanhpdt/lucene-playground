@@ -1,0 +1,5 @@
+*.fdt
+*.fdx
+.idea
+write.lock
+build
