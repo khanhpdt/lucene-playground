@@ -20,31 +20,26 @@ class FileIndexer {
 
     private IndexWriter indexWriter;
 
-    FileIndexer(String indexDir, String dataDir) throws IOException {
+    FileIndexer(String indexDir) throws IOException {
         FSDirectory indexDirectory = FSDirectory.open(Paths.get(indexDir));
         indexWriter = new IndexWriter(indexDirectory, new IndexWriterConfig());
-
-        indexDirectory(dataDir);
     }
 
-    private void indexDirectory(String dataDir) throws IOException {
+    void indexDirectory(String dataDir) throws IOException {
         try {
-            System.out.println("Delete all existing docs...");
-            indexWriter.deleteAll();
-
             try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dataDir), "*.txt")) {
                 for (Path path : stream) {
                     indexFile(path);
                 }
             }
-            System.out.println("Indexed " + String.valueOf(indexWriter.numDocs()) + " documents.");
+            System.out.println("Indexed " + String.valueOf(indexWriter.numDocs()) + " files.");
         } finally {
             indexWriter.close();
         }
     }
 
     private void indexFile(Path filePath) throws IOException {
-        System.out.println("Indexing file " + filePath.toAbsolutePath() + "...");
+        System.out.println("Indexing file " + filePath.toAbsolutePath());
         Document doc = createDocument(filePath);
         try {
             indexWriter.addDocument(doc);
@@ -66,4 +61,8 @@ class FileIndexer {
         return doc;
     }
 
+    void deleteDocs() throws IOException {
+        System.out.println("Delete all existing docs...");
+        indexWriter.deleteAll();
+    }
 }

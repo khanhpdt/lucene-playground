@@ -15,7 +15,7 @@ class FileSearcher {
 
 	private IndexSearcher indexSearcher;
 
-	public FileSearcher(String indexDir) throws IOException {
+	FileSearcher(String indexDir) throws IOException {
 		FSDirectory indexDirectory = FSDirectory.open(Paths.get(indexDir));
 		indexSearcher = new IndexSearcher(DirectoryReader.open(indexDirectory));
 	}
@@ -29,4 +29,7 @@ class FileSearcher {
 		return docs;
 	}
 
+	void close() throws IOException {
+		indexSearcher.getIndexReader().close();
+	}
 }
