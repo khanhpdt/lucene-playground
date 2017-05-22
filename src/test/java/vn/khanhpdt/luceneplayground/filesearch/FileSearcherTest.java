@@ -53,4 +53,14 @@ public class FileSearcherTest {
 
 		assertThat(hits.totalHits, Matchers.is(2));
 	}
+
+	@Test
+	public void testFindContents() throws Exception {
+		Term term = new Term("contents", "file");
+		PrefixQuery query = new PrefixQuery(term);
+
+		TopDocs hits = fileSearcher.search(query);
+
+		assertThat(hits.totalHits, Matchers.is(2));
+	}
 }

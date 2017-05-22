@@ -32,4 +32,5 @@ class FileSearcher {
 	void close() throws IOException {
 		indexSearcher.getIndexReader().close();
 	}
+
 }
