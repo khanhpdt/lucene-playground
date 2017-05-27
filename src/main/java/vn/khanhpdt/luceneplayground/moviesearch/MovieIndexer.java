@@ -30,20 +30,7 @@ class MovieIndexer {
 
 	void start() throws IOException {
 		createIndexWriter();
-
-		int fileCount = 1;
-		try {
-			try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dataDir), "*.yml")) {
-				for (Path path : stream) {
-					indexFile(path);
-
-					fileCount++;
-				}
-				System.out.println(String.format("Indexed %d documents from %d files.", indexWriter.numDocs(), fileCount));
-			}
-		} finally {
-			indexWriter.close();
-		}
+		indexDirectory();
 	}
 
 	private void createIndexWriter() throws IOException {
@@ -53,9 +40,23 @@ class MovieIndexer {
 		indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);
 	}
 
+	private void indexDirectory() throws IOException {
+		int fileCount = 0;
+		try {
+			try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dataDir), "*.yml")) {
+				for (Path path : stream) {
+					indexFile(path);
+					fileCount++;
+				}
+				System.out.println(String.format("Indexed %d documents from %d files.", indexWriter.numDocs(), fileCount));
+			}
+		} finally {
+			indexWriter.close();
+		}
+	}
+
 	private void indexFile(Path filePath) throws IOException {
 		System.out.println("Indexing file " + filePath.toAbsolutePath());
-
 		List<Document> docs = createDocuments(filePath);
 		indexWriter.addDocuments(docs);
 	}
