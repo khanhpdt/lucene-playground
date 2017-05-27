@@ -1,0 +1,90 @@
+-
+ title: The Shawshank Redemption
+ summary: >
+  Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.
+ storyline: >
+  Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after
+  being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new,
+  torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.
+ genres:
+  - Crime
+  - Drama
+ rating:
+  score: 9.3
+  count: 1812327
+ releaseDate: 1994-10-14
+ directors:
+  - Frank Darabont
+ stars:
+  - Tim Robbins
+  - Morgan Freeman
+  - Bob Gunton
+-
+ title: The Godfather
+ summary: >
+  The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.
+ storyline: >
+  When the aging head of a famous crime family decides to transfer his position to one of his subalterns, a series of
+  unfortunate events start happening to the family, and a war begins between all the well-known families leading to
+  insolence, deportation, murder and revenge, and ends with the favorable successor being finally chosen.
+ genres:
+  - Crime
+  - Drama
+ rating:
+  score: 9.2
+  count: 1237679
+ releaseDate: 1972-03-24
+ directors:
+  - Francis Ford Coppola
+ stars:
+  - Marlon Brando
+  - Al Pacino
+  - James Caan
+-
+ title: "The Godfather: Part II" # ":" must be escaped
+ summary: >
+  The early life and career of Vito Corleone in 1920s New York is portrayed while his son, Michael, expands and tightens
+  his grip on the family crime syndicate.
+ storyline: >
+  The continuing saga of the Corleone crime family tells the story of a young Vito Corleone growing up in Sicily and in
+  1910s New York; and follows Michael Corleone in the 1950s as he attempts to expand the family business into Las Vegas,
+  Hollywood and Cuba.
+ genres:
+  - Crime
+  - Drama
+ rating:
+  score: 9.0
+  count: 851828
+ releaseDate: 1974-12-20
+ directors:
+  - Francis Ford Coppola
+ stars:
+  - Al Pacino
+  - Robert De Niro
+  - Robert Duvall
+-
+ title: The Dark Knight
+ summary: >
+  When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the Dark Knight must come to terms
+  with one of the greatest psychological tests of his ability to fight injustice.
+ storyline: >
+  Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney
+  Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious and sadistic
+  criminal mastermind known only as the Joker appears in Gotham, creating a new wave of chaos. Batman's struggle
+  against the Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his
+  technology to stop him. A love triangle develops between Bruce Wayne, Dent and Rachel Dawes.
+ genres:
+  - Action
+  - Crime
+  - Drama
+  - Thriller
+ rating:
+  score: 9.0
+  count: 1792625
+ releaseDate: 2008-07-18
+ directors:
+  - Christopher Nolan
+ stars:
+  - Christian Bale
+  - Heath Ledger
+  - Aaron Eckhart
