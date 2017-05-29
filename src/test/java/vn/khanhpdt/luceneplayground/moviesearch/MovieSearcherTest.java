@@ -2,10 +2,7 @@ package vn.khanhpdt.luceneplayground.moviesearch;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.search.PhraseQuery;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
@@ -66,6 +63,17 @@ public class MovieSearcherTest {
 	}
 
 	@Test
+	public void testPrefixQuery() throws Exception {
+		Term term = new Term(MovieFields.TITLE, "godfa");
+		PrefixQuery query = new PrefixQuery(term);
+
+		TopDocs docs = searcher.search(query);
+
+		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
+	@Test
 	public void testPhraseQueryConsecutiveTerms() throws Exception {
 		PhraseQuery.Builder builder = new PhraseQuery.Builder();
 		builder.add(new Term("summary", "dark"));
@@ -95,4 +103,5 @@ public class MovieSearcherTest {
 			System.out.println("Found movie: " + movie.get(MovieFields.TITLE));
 		}
 	}
+
 }
