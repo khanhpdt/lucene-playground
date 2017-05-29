@@ -39,13 +39,6 @@ class MovieIndexer {
 		commitIndex();
 	}
 
-	private void commitIndex() throws IOException {
-		long committed = indexWriter.commit();
-		if (committed == -1L) {
-			System.out.println("No change committed");
-		}
-	}
-
 	private void createIndexWriter() throws IOException {
 		FSDirectory indexDirectory = FSDirectory.open(Paths.get(indexDir));
 		IndexWriterConfig indexWriterConfig = new IndexWriterConfig();
@@ -53,6 +46,13 @@ class MovieIndexer {
 		indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);
 
 		System.out.println("Writer config: " + indexWriterConfig.toString());
+	}
+
+	private void commitIndex() throws IOException {
+		long committed = indexWriter.commit();
+		if (committed == -1L) {
+			System.out.println("No change committed");
+		}
 	}
 
 	private void indexDirectory() throws IOException {

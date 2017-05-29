@@ -2,6 +2,7 @@ package vn.khanhpdt.luceneplayground.moviesearch;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
@@ -61,6 +62,30 @@ public class MovieSearcherTest {
 		TopDocs docs = searcher.search(termQuery);
 
 		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testPhraseQueryConsecutiveTerms() throws Exception {
+		PhraseQuery.Builder builder = new PhraseQuery.Builder();
+		builder.add(new Term("summary", "dark"));
+		builder.add(new Term("summary", "knight"));
+
+		TopDocs docs = searcher.search(builder.build());
+
+		assertThat(docs.totalHits, Matchers.is(1));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testPhraseQueryWithPositions() throws Exception {
+		PhraseQuery.Builder builder = new PhraseQuery.Builder();
+		builder.add(new Term("summary", "dark"), 0);
+		builder.add(new Term("summary", "knight"), 2);
+
+		TopDocs docs = searcher.search(builder.build());
+
+		assertThat(docs.totalHits, Matchers.is(1));
 		printMovieTitles(docs);
 	}
 
