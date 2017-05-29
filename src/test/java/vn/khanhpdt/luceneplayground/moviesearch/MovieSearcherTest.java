@@ -104,4 +104,68 @@ public class MovieSearcherTest {
 		}
 	}
 
+	@Test
+	public void testBooleanQueryParser() throws Exception {
+		TopDocs docs = searcher.search("+title:Dark +summary:\"Dark Good Knight\"");
+
+		assertThat(docs.totalHits, Matchers.is(1));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testBooleanQueryParser_2() throws Exception {
+		TopDocs docs = searcher.search("+title:Godfather +star:\"Al Pacino\"");
+
+		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testBooleanQueryParser_3() throws Exception {
+		TopDocs docs = searcher.search("star:(+\"Al Pacino\" +\"De Niro\")");
+
+		assertThat(docs.totalHits, Matchers.is(1));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testProximityQueryParser() throws Exception {
+		TopDocs docs = searcher.search("summary:\"Dark Knight\"~2");
+
+		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testFuzzyQueryParser() throws Exception {
+		TopDocs docs = searcher.search("title:showsank~2");
+
+		assertThat(docs.totalHits, Matchers.is(1));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testMiddleWildcardQueryParser() throws Exception {
+		TopDocs docs = searcher.search("title:G*r");
+
+		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testEndingWildcardQueryParser() throws Exception {
+		TopDocs docs = searcher.search("title:Godf*");
+
+		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testRangeQueryParser() throws Exception {
+		TopDocs docs = searcher.search("releaseDate:[19720324 TO 19741220]");
+
+		assertThat(docs.totalHits, Matchers.is(2));
+		printMovieTitles(docs);
+	}
+
 }

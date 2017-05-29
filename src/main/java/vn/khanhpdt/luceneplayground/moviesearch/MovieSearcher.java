@@ -1,6 +1,9 @@
 package vn.khanhpdt.luceneplayground.moviesearch;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
@@ -20,6 +23,14 @@ class MovieSearcher {
 
 	TopDocs search(Query query) throws IOException {
 		return indexSearcher.search(query, 20);
+	}
+
+	/**
+	 * @see <a href="https://lucene.apache.org/core/6_5_1/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package.description">More details on query</a>
+	 */
+	TopDocs search(String query) throws ParseException, IOException {
+		QueryParser queryParser = new QueryParser(null, new StandardAnalyzer());
+		return search(queryParser.parse(query));
 	}
 
 	IndexSearcher getIndexSearcher() {
