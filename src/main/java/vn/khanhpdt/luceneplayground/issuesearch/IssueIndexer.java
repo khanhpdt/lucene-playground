@@ -82,7 +82,8 @@ class IssueIndexer {
 	private Document createDocument(Issue issue) {
 		Document result = new Document();
 		result.add(new TextField(IssueFields.KEY, issue.getKey(), Field.Store.YES));
-		result.add(new TextField(IssueFields.SUMMARY, issue.getSummary(), Field.Store.NO));
+		result.add(new TextField(IssueFields.SUMMARY, issue.getSummary(), Field.Store.YES));
+		result.add(new TextField(IssueFields.DESCRIPTION, issue.getDescription(), Field.Store.NO));
 		result.add(new TextField(IssueFields.CREATED_TIME,
 				DateTools.dateToString(issue.getCreatedTime(), DateTools.Resolution.SECOND), Field.Store.NO));
 		return result;

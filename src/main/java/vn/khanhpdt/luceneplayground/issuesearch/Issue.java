@@ -6,6 +6,7 @@ class Issue {
 
 	private String key;
 	private String summary;
+	private String description;
 	private Date createdTime;
 
 	String getKey() {
@@ -22,6 +23,14 @@ class Issue {
 
 	void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	String getDescription() {
+		return description;
+	}
+
+	void setDescription(String description) {
+		this.description = description;
 	}
 
 	Date getCreatedTime() {
