@@ -82,7 +82,8 @@ class MovieIndexer {
 		Document result = new Document();
 		result.add(new TextField(MovieFields.TITLE, movie.getTitle(), Field.Store.YES));
 		result.add(new TextField(MovieFields.SUMMARY, movie.getSummary(), Field.Store.YES));
-		result.add(new TextField(MovieFields.STORYLINE, movie.getStoryline(), Field.Store.NO));
+
+		result.add(new StringField(MovieFields.STORYLINE, movie.getStoryline(), Field.Store.NO));
 
 		for (String genre : movie.getGenres()) {
 			result.add(new TextField(MovieFields.GENRE, genre, Field.Store.NO));

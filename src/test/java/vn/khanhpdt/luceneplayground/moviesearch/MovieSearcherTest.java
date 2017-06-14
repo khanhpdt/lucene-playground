@@ -2,6 +2,7 @@ package vn.khanhpdt.luceneplayground.moviesearch;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.*;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MovieSearcherTest {
@@ -134,6 +136,16 @@ public class MovieSearcherTest {
 
 		assertThat(docs.totalHits, Matchers.is(2));
 		printMovieTitles(docs);
+	}
+
+	@Test
+	public void testProximityQueryNotSupported() throws Exception {
+		try {
+			searcher.search("storyline:\"Joker Gotham\"~4");
+			fail();
+		} catch (IllegalStateException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 	}
 
 	@Test
