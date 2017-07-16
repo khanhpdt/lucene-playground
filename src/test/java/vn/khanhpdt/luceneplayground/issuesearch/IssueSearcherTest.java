@@ -1,17 +1,21 @@
 package vn.khanhpdt.luceneplayground.issuesearch;
 
-import org.apache.lucene.document.Document;
-import org.apache.lucene.index.Term;
-import org.apache.lucene.search.*;
-import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.PhraseQuery;
+import org.apache.lucene.search.PrefixQuery;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.TopDocs;
+import org.hamcrest.Matchers;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class IssueSearcherTest {
 
@@ -20,8 +24,8 @@ public class IssueSearcherTest {
 
 	@Before
 	public void setUp() throws Exception {
-		String dataDir = this.getClass().getResource("/IssueIndexer/data").getPath();
-		String indexDir = this.getClass().getResource("/IssueIndexer/index").getPath();
+		String dataDir = this.getClass().getResource("/IssueIndexer").getPath() + "/data";
+		String indexDir = this.getClass().getResource("/IssueIndexer").getPath() + "/index";
 
 		indexer = new IssueIndexer(indexDir, dataDir);
 		indexer.start();
